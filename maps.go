@@ -13,7 +13,7 @@ type ScaleType bool
 
 type Map struct {
 	min, max float64
-	scale ScaleType
+	scale    ScaleType
 }
 
 // Map object for converting a value between 0 and 1 on a logarithmic or linear scale.
@@ -31,15 +31,15 @@ func (m *Map) Get(x float64) float64 {
 	}
 
 	if m.scale == LOG_SCALE {
-		return math.Pow(10, x * math.Log10(m.max / m.min) + math.Log10(m.min))
+		return math.Pow(10, x*math.Log10(m.max/m.min)+math.Log10(m.min))
 	}
-	return (m.max - m.min) * x + m.min
+	return (m.max-m.min)*x + m.min
 }
 
 // Takes 'x' in the real range and returns value unscaled (between 0 and 1).
 func (m *Map) Set(x float64) float64 {
 	if m.scale == LOG_SCALE {
-		return math.Log10(x / m.min) / math.Log10(m.max / m.min)
+		return math.Log10(x/m.min) / math.Log10(m.max/m.min)
 	}
 	return (x - m.min) / (m.max - m.min)
 }
@@ -99,7 +99,7 @@ class SLMap(Map):
     """
     Base Map class used to manage control sliders.
 
-    Derived from Map class, a few parameters are added for sliders 
+    Derived from Map class, a few parameters are added for sliders
     initialization.
 
     :Parent: :py:class:`Map`
@@ -111,7 +111,7 @@ class SLMap(Map):
         max : int or float
             Highest value of the range.
         scale : string {'lin', 'log'}
-            Method used to scale the input value on the specified range.    
+            Method used to scale the input value on the specified range.
         name : string
             Name of the attributes the slider is affected to.
         init : int or float
@@ -120,12 +120,12 @@ class SLMap(Map):
         res : string {'int', 'float'}, optional
             Sets the resolution of the slider. Defaults to 'float'.
         ramp : float, optional
-            Ramp time, in seconds, used to smooth the signal sent from slider 
+            Ramp time, in seconds, used to smooth the signal sent from slider
             to object's attribute. Defaults to 0.025.
         dataOnly : boolean, optional
-            Set this argument to True if the parameter does not accept audio 
-            signal as control but discreet values. If True, label will be 
-            marked with a star symbol (*). Defaults to False. 
+            Set this argument to True if the parameter does not accept audio
+            signal as control but discreet values. If True, label will be
+            marked with a star symbol (*). Defaults to False.
 
     >>> s = Server().boot()
     >>> s.start()
@@ -140,23 +140,23 @@ class SLMap(Map):
         self._name, self._init, self._res, self._ramp, self._dataOnly = name, init, res, ramp, dataOnly
 
     @property
-    def name(self): 
+    def name(self):
         """string. Name of the parameter to control."""
         return self._name
     @property
-    def init(self): 
+    def init(self):
         """float. Initial value of the slider."""
         return self._init
     @property
-    def res(self): 
+    def res(self):
         """string. Slider resolution {int or float}."""
         return self._res
     @property
-    def ramp(self): 
+    def ramp(self):
         """float. Ramp time in seconds."""
         return self._ramp
     @property
-    def dataOnly(self): 
+    def dataOnly(self):
         """boolean. True if argument does not accept audio stream."""
         return self._dataOnly
 
@@ -174,7 +174,7 @@ class SLMapFreq(SLMap):
 
     .. note::
 
-        SLMapFreq values are: 
+        SLMapFreq values are:
 
         - min = 20.0
         - max = 20000.0
@@ -228,7 +228,7 @@ class SLMapPhase(SLMap):
 
     .. note::
 
-        SLMapPhase values are: 
+        SLMapPhase values are:
 
         - min = 0.0
         - max = 1.0
@@ -255,7 +255,7 @@ class SLMapPan(SLMap):
 
     .. note::
 
-        SLMapPhase values are: 
+        SLMapPhase values are:
 
         - min = 0.0
         - max = 1.0
@@ -282,7 +282,7 @@ class SLMapQ(SLMap):
 
     .. note::
 
-        SLMapQ values are: 
+        SLMapQ values are:
 
         - min = 0.1
         - max = 100.0
@@ -309,7 +309,7 @@ class SLMapDur(SLMap):
 
     .. note::
 
-        SLMapDur values are: 
+        SLMapDur values are:
 
         - min = 0.
         - max = 60.0

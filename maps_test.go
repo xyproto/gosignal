@@ -22,4 +22,3 @@ func TestMap(t *testing.T) {
 		t.Errorf("Retval is %v but should be %v!\n", retval, answer)
 	}
 }
-

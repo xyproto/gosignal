@@ -6,7 +6,7 @@ class NewMatrix(PyoMatrixObject):
     """
     Create a new matrix ready for recording.
 
-    Optionally, the matrix can be filled with the contents of the 
+    Optionally, the matrix can be filled with the contents of the
     `init` parameter.
 
     See :py:class:`MatrixRec` to write samples in the matrix.
@@ -22,8 +22,8 @@ class NewMatrix(PyoMatrixObject):
         init : list of list of floats, optional
             Initial matrix. Defaults to None.
 
-    .. seealso:: 
-        
+    .. seealso::
+
         :py:class:`MatrixRec`
 
     >>> s = Server().boot()
@@ -45,13 +45,13 @@ class NewMatrix(PyoMatrixObject):
             self._base_objs = [NewMatrix_base(width, height)]
         else:
             self._base_objs = [NewMatrix_base(width, height, init)]
-            
+
     def replace(self, x):
         """
         Replaces the actual matrix.
-        
+
         :Args:
-        
+
             x : list of list of floats
                 New matrix. Must be of the same size as the actual matrix.
 
@@ -61,9 +61,9 @@ class NewMatrix(PyoMatrixObject):
 
     def getRate(self):
         """
-        Returns the frequency (cycle per second) to give to an 
+        Returns the frequency (cycle per second) to give to an
         oscillator to read the sound at its original pitch.
-        
+
         """
         return self._base_objs[0].getRate()
 
