@@ -1,9 +1,7 @@
 package gosignal
 
 
-`
-Objects to modify the dynamic range and sample quality of audio signals.
-`
+// Objects to modify the dynamic range and sample quality of audio signals.
 
 type InputType int // TODO: Find the correct type
 
@@ -37,16 +35,20 @@ type Clip struct {
  * >>> lfodown = 0 - lfoup
  * >>> c = Clip(a, min=lfodown, max=lfoup, mul=.4).mix(2).out()
 */
+
+// TODO: Figure out what InputFader really does and what ConvertArgsToLists is supposed to do in this context
+/*
 func NewClip(input InputType, min, max, mul, add float64) *Clip {
 	in_fader := InputFader(input)
 	in_fader, min, max, mul, add, lmax := ConvertArgsToLists(in_fader, min, max, mul, add)
 	var base_objs []BaseObjType
 	for i := 0; i < lmax; i++ {
-		val := Clip_base(wrap(in_fader, i), wrap(min, i), wrap(max, i), wrap(mul, i), wrap(add, i))
+		val := Clip_base(Wrap(in_fader, i), Wrap(min, i), Wrap(max, i), Wrap(mul, i), Wrap(add, i))
 		base_objs = append(base_objs, val)
 	}
 	return &Clip{input, min, max, mul, add, in_fader, base_objs}
 }
+*/
 
 // Replace the "input" attribute.
 func (c *Clip) SetInput(x InputType, fadetime float64) { // fadetime=0.05
