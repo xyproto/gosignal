@@ -16,33 +16,14 @@ type Map struct {
 	scale ScaleType
 }
 
-/*
- * Converts value between 0 and 1 on various scales.
- *
- * Base class for Map objects.
- *
- * :Args:
- *
- *     min : int or float
- *         Lowest value of the range.
- *     max : int or float
- *         Highest value of the range.
- *     scale : string {'lin', 'log'}
- *         Method used to scale the input value on the specified range.
- *
- * >>> m = Map(20., 20000., 'log')
- * >>> print m.get(.5)
- * 632.455532034
- * >>> print m.set(12000)
- * 0.926050416795
-*/
+// Map object for converting a value between 0 and 1 on a logarithmic or linear scale.
 func NewMap(min, max float64, scale ScaleType) *Map {
 	return &Map{min, max, scale}
 }
 
 // Takes 'x' between 0 and 1 and returns a scaled value.
 func (m *Map) Get(x float64) float64 {
-	// clamp
+	// Clamp
 	if x < 0 {
 		x = 0.0
 	} else if x > 1 {
